@@ -1,5 +1,12 @@
 $(document).foundation()
 
+
+$('.top-bar').on('sticky.zf.stuckto:top', function(){
+  $(this).addClass('shrink');
+}).on('sticky.zf.unstuckfrom:top', function(){
+  $(this).removeClass('shrink');
+})
+
 var megaRoster = {
     init: function(rosterElementSelector) {
         this.rosterElement = document.querySelector(rosterElementSelector);
@@ -65,14 +72,14 @@ var megaRoster = {
         span.className = 'actions';
 
         var deleteLink = this.buildLink({
-            contents: 'remove',
+            contents: '<i class="fa fa-trash" aria-hidden="true"></i>',
             handler: function(ev) {
                 this.rosterElement.removeChild(item);
             }
         });
 
         var promoteLink = this.buildLink({
-            contents: 'promote',
+            contents: '<i class="fa fa-line-chart" aria-hidden="true"></i>',
             handler: function() {
                 this.promote(item);
             }
